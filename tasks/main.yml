@@ -1,0 +1,27 @@
+---
+- name: install common software properties
+  apt:
+    name: software-properties-common
+    state: present
+
+- name: install ansible ppa key
+  apt_key:
+    id: 6125E2A8C77F2818FB7BD15B93C4A3FD7BB9C367
+    keyserver: keyserver.ubuntu.com
+    state: present
+
+- name: add ansible repository
+  apt_repository:
+    repo: "ppa:ansible/ansible"
+    state: present
+  register: ansible_added
+
+- name: apt update cache
+  apt:
+    update_cache: yes
+  when: ansible_added.changed
+
+- name: install ansible
+  apt:
+    name: ansible
+    state: present
