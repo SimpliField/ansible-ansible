@@ -24,4 +24,4 @@
 - name: install ansible
   apt:
     name: ansible
-    state: present
+    state: {{ ansible_state }}

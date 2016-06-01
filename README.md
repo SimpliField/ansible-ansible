@@ -12,6 +12,7 @@ Role Variables
 --------------
 
 ```yaml
+ansible_state: present
 ```
 
 Dependencies
